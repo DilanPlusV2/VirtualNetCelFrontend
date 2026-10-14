@@ -1,0 +1,251 @@
+<section class="catalog">
+
+    <h1>
+
+        Nuestros Productos
+
+    </h1>
+
+    <p>
+
+        Explora nuestro catálogo
+
+    </p>
+
+    <div class="filters">
+
+        <button
+
+        (click)="filtrar('Todos')"
+
+        [class.active]="categoriaSeleccionada==='Todos'">
+
+            Todos
+
+        </button>
+
+        <button
+
+        *ngFor="let c of categorias"
+
+        (click)="filtrar(c.nombre)"
+
+        [class.active]="categoriaSeleccionada===c.nombre">
+
+            {{c.nombre}}
+
+        </button>
+
+    </div>
+
+    <div class="products">
+
+        <div
+
+        class="product"
+
+        *ngFor="let producto of productosFiltrados">
+
+            <img
+
+            [src]="image(producto)">
+
+            <div class="content">
+
+                <h3>
+
+                    {{producto.nombre}}
+
+                </h3>
+
+                <small>
+
+                    {{producto.categoriaNombre}}
+
+                </small>
+
+                <p>
+
+                    {{producto.descripcion}}
+
+                </p>
+
+                <div class="price">
+
+                    {{producto.precio_venta |
+
+                    currency:'COP'}}
+
+                </div>
+
+                <div class="stock">
+
+    <span
+        [class.available]="producto.stock > 0"
+        [class.unavailable]="producto.stock === 0">
+
+        {{ producto.stock }} disponibles
+
+    </span>
+
+</div>
+
+                <button (click)="verProducto(producto)">
+
+                    Ver producto
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div
+class="modal-backdrop"
+*ngIf="productoSeleccionado">
+
+<div class="product-modal">
+
+<button
+class="close"
+(click)="cerrarProducto()">
+
+✕
+
+</button>
+
+<div class="modal-body">
+
+<div class="gallery">
+
+<img
+class="main-image"
+[src]="imagenPrincipal">
+
+<div
+class="thumbnails"
+*ngIf="productoSeleccionado.fotos?.length">
+
+<img
+
+*ngFor="let foto of productoSeleccionado.fotos"
+
+[src]="server + foto.ruta_archivo"
+
+(click)="cambiarImagen(server + foto.ruta_archivo)"
+
+[class.active]="imagenPrincipal === server + foto.ruta_archivo">
+
+</div>
+
+</div>
+
+<div class="info">
+
+<span class="category">
+
+{{productoSeleccionado.categoria.nombre}}
+
+</span>
+
+<h2>
+
+{{productoSeleccionado.nombre}}
+
+</h2>
+
+<div class="modal-price">
+
+{{productoSeleccionado.precio_venta | currency:'COP'}}
+
+</div>
+
+<div class="stock">
+
+<span
+
+[class.available]="productoSeleccionado.stock>0"
+
+[class.unavailable]="productoSeleccionado.stock===0">
+
+{{productoSeleccionado.stock}}
+
+unidades disponibles
+
+</span>
+
+</div>
+
+<p class="description">
+
+{{productoSeleccionado.descripcion}}
+
+</p>
+
+<div class="downloads">
+
+<a
+    *ngIf="productoSeleccionado.ficha_tecnica"
+    target="_blank"
+    [href]="server + productoSeleccionado.ficha_tecnica">
+
+    <img
+        src="/document.png"
+        class="download-icon"
+        alt="Ficha técnica">
+
+    Descargar ficha técnica
+
+</a>
+
+<a
+    *ngIf="productoSeleccionado.manual_usuario"
+    target="_blank"
+    [href]="server + productoSeleccionado.manual_usuario">
+
+    <img
+        src="/manual.png"
+        class="download-icon"
+        alt="Manual">
+
+    Descargar manual
+
+</a>
+
+</div>
+
+<div class="actions">
+
+    <button
+    class="whatsapp-btn"
+    (click)="pedirWhatsapp()">
+
+    <img
+        src="/whatsapp.png"
+        class="whatsapp-icon"
+        alt="WhatsApp">
+
+    Pedir por WhatsApp
+
+</button>
+
+<button
+(click)="cerrarProducto()">
+
+Cerrar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

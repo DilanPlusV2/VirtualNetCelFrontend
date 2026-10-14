@@ -1,0 +1,247 @@
+<section *ngIf="home">
+
+    <section class="hero-video">
+
+    <video
+        autoplay
+        muted
+        loop
+        playsinline>
+
+        <source
+            src="assets/videos/hero.mp4"
+            type="video/mp4">
+
+    </video>
+
+    <div class="hero-overlay">
+
+        <h1>
+
+            Automatizamos tu tranquilidad
+
+        </h1>
+
+        <p>
+
+            Instalación, mantenimiento y automatización de portones,
+            paneles solares y soluciones tecnológicas.
+
+        </p>
+
+        <button
+            (click)="goToServices()">
+
+            Ver servicios
+
+        </button>
+
+    </div>
+
+</section>
+
+    <div class="stats">
+
+    <div
+        class="stat-card"
+        (click)="goToServices()">
+
+        <div class="stat-icon">
+
+            <img
+                src="/services.png"
+                alt="Servicios">
+
+        </div>
+
+        <h2>
+
+            {{home.indicadores.serviciosRealizados}}
+
+        </h2>
+
+        <span>
+
+            Servicios realizados
+
+        </span>
+
+    </div>
+
+    <div
+        class="stat-card"
+        (click)="goToProducts()">
+
+        <div class="stat-icon">
+
+            <img
+                src="/products.png"
+                alt="Productos">
+
+        </div>
+
+        <h2>
+
+            {{home.indicadores.productosInstalados}}
+
+        </h2>
+
+        <span>
+
+            Productos instalados
+
+        </span>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <img
+                src="/testimonial.png"
+                alt="Clientes">
+
+        </div>
+
+        <h2>
+
+            {{home.indicadores.clientesSatisfechos}}
+
+        </h2>
+
+        <span>
+
+            Clientes satisfechos
+
+        </span>
+
+    </div>
+
+</div>
+
+    <section
+class="testimonial-section"
+*ngIf="home.testimonios.length">
+
+<h2>
+
+Lo que dicen nuestros clientes
+
+</h2>
+
+<div class="testimonial-card">
+
+<button
+class="nav prev"
+(click)="anteriorTestimonio()">
+
+❮
+
+</button>
+
+<div class="testimonial">
+
+<div class="quote">
+
+❝
+
+</div>
+
+<p>
+
+{{home.testimonios[testimonioActual].testimonio}}
+
+</p>
+
+<h3>
+
+{{home.testimonios[testimonioActual].cliente}}
+
+</h3>
+
+<span>
+
+{{home.testimonios[testimonioActual].direccion}}
+
+</span>
+
+</div>
+
+<button
+class="nav next"
+(click)="siguienteTestimonio()">
+
+❯
+
+</button>
+
+</div>
+
+<div class="dots">
+
+<span
+
+*ngFor="let t of home.testimonios;let i=index"
+
+[class.active]="i===testimonioActual"
+
+(click)="testimonioActual=i">
+
+</span>
+
+</div>
+
+</section>
+
+    <h2 class="title">
+
+        Productos destacados
+
+    </h2>
+
+    <div class="cards">
+
+        <div
+            class="card"
+            *ngFor="let producto of home.productosDestacados" (click)="goToProducts()">
+
+            <img
+                [src]="productImage(producto)">
+
+            <h3>
+
+                {{producto.nombre}}
+
+            </h3>
+
+        </div>
+
+    </div>
+
+    <h2 class="title">
+
+        Servicios destacados
+
+    </h2>
+
+    <div class="cards">
+
+        <div
+            class="card"
+            *ngFor="let servicio of home.serviciosDestacados" (click)="goToServices()">
+
+            <img
+                [src]="serviceImage(servicio)">
+
+            <h3>
+
+                {{servicio.nombre}}
+
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,424 @@
+<div class="page">
+
+    <h1>Inventario</h1>
+
+    <div class="toolbar">
+
+        <input
+            type="text"
+            [(ngModel)]="search"
+            (input)="filter()"
+            placeholder="Buscar producto...">
+
+        <select
+            [(ngModel)]="category"
+            (change)="filter()">
+
+            <option value="">
+                Todas las categorías
+            </option>
+
+            <option
+                *ngFor="let c of categories"
+                [value]="c.id">
+
+                {{c.nombre}}
+
+            </option>
+
+        </select>
+
+        <input
+            type="date"
+            [(ngModel)]="fromDate">
+
+        <input
+            type="date"
+            [(ngModel)]="toDate">
+
+        <button
+            (click)="clearFilters()">
+
+            Limpiar
+
+        </button>
+
+    </div>
+
+    <div class="grid">
+
+        <div
+            class="product-card"
+            *ngFor="let p of filteredProducts">
+
+            <div class="header">
+
+                <h2>
+
+                    {{p.nombre}}
+
+                </h2>
+
+                <span class="category">
+
+                    {{p.categoria?.nombre}}
+
+                </span>
+
+            </div>
+
+            <div
+                class="stock"
+                [ngClass]="stockClass(p)">
+
+                {{p.stock ?? 0}}
+
+            </div>
+
+            <div class="stock-text">
+
+                Unidades disponibles
+
+            </div>
+
+            <div class="actions">
+
+                <button
+                    class="primary"
+                    (click)="movement(p)">
+
+                    Movimiento
+
+                </button>
+
+                <button
+                    class="secondary"
+                    (click)="viewHistory(p)">
+
+                    Historial
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ============================= -->
+
+<!-- MODAL MOVIMIENTO -->
+
+<!-- ============================= -->
+
+<div
+    class="modal"
+    *ngIf="showModal">
+
+    <div class="card">
+
+        <h2>
+
+            Movimiento de Inventario
+
+        </h2>
+
+        <div class="product-info">
+
+            <h3>
+
+                {{selectedProduct?.nombre}}
+
+            </h3>
+
+            <span>
+
+                Stock actual:
+
+                <strong>
+
+                    {{selectedProduct?.stock ?? 0}}
+
+                </strong>
+
+            </span>
+
+        </div>
+
+        <label>
+
+            Tipo de movimiento
+
+        </label>
+
+        <select
+            [(ngModel)]="form.tipo">
+
+            <option value="ENTRADA">
+
+                ENTRADA
+
+            </option>
+
+            <option value="SALIDA">
+
+                SALIDA
+
+            </option>
+
+        </select>
+
+        <label>
+
+            Cantidad
+
+        </label>
+
+        <input
+            type="number"
+            min="1"
+            [(ngModel)]="form.cantidad">
+
+        <label>
+
+            Observación
+
+        </label>
+
+        <textarea
+            [(ngModel)]="form.observacion">
+
+        </textarea>
+
+        <div
+            class="alert danger"
+            *ngIf="errorStock">
+
+            {{errorStock}}
+
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="cancel"
+                (click)="showModal=false">
+
+                Cancelar
+
+            </button>
+
+            <button
+
+class="save"
+
+[disabled]="saving"
+
+(click)="save()">
+
+{{saving?'Guardando...':'Guardar'}}
+
+</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ============================= -->
+
+<!-- MODAL HISTORIAL -->
+
+<!-- ============================= -->
+
+<div
+    class="modal"
+    *ngIf="showHistory">
+
+    <div class="card history-card">
+
+        <h2>
+
+            Historial de Inventario
+
+        </h2>
+
+        <h3>
+
+            {{historyProduct?.nombre}}
+
+        </h3>
+
+        <div class="resume">
+
+            <div class="resume-card success">
+
+                <span>
+
+                    Entradas
+
+                </span>
+
+                <h2>
+
+                    {{totalEntradas}}
+
+                </h2>
+
+            </div>
+
+            <div class="resume-card danger">
+
+                <span>
+
+                    Salidas
+
+                </span>
+
+                <h2>
+
+                    {{totalSalidas}}
+
+                </h2>
+
+            </div>
+
+            <div class="resume-card primary">
+
+                <span>
+
+                    Stock Actual
+
+                </span>
+
+                <h2>
+
+                    {{stockActual}}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+
+                        Fecha
+
+                    </th>
+
+                    <th>
+
+                        Tipo
+
+                    </th>
+
+                    <th>
+
+                        Cantidad
+
+                    </th>
+
+                    <th>
+
+                        Stock anterior
+
+                    </th>
+
+                    <th>
+
+                        Stock nuevo
+
+                    </th>
+
+                    <th>
+
+                        Observación
+
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    *ngFor="let h of history">
+
+                    <td>
+
+                        {{h.createdAt | date:'short'}}
+
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="badge"
+                            [ngClass]="h.tipo==='ENTRADA' ? 'success' : 'danger'">
+
+                            {{h.tipo}}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        {{h.cantidad}}
+
+                    </td>
+
+                    <td>
+
+                        {{h.stock_anterior}}
+
+                    </td>
+
+                    <td>
+
+                        <strong>
+
+                            {{h.stock_nuevo}}
+
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        {{h.observacion}}
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="buttons">
+
+            <button
+                class="save"
+                (click)="showHistory=false">
+
+                Cerrar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

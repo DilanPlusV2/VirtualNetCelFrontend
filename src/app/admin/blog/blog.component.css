@@ -1,0 +1,289 @@
+.page{
+
+    padding:30px;
+
+}
+
+.page h1{
+
+    margin-bottom:25px;
+
+    color:#222;
+
+}
+
+/* ---------------- Toolbar ---------------- */
+
+.toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+.toolbar input{
+
+    flex:1;
+
+    min-width:280px;
+
+    max-width:450px;
+
+    padding:12px 15px;
+
+    border:1px solid #d7d7d7;
+
+    border-radius:8px;
+
+    transition:.2s;
+
+}
+
+.toolbar input:focus{
+
+    outline:none;
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 4px rgba(13,110,253,.15);
+
+}
+
+.toolbar button{
+
+    background:#0d6efd;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:12px 22px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.toolbar button:hover{
+
+    background:#0b5ed7;
+
+}
+
+/* ---------------- Tabla ---------------- */
+
+.table-container{
+
+    overflow:auto;
+
+    border-radius:12px;
+
+    background:white;
+
+    box-shadow:0 6px 25px rgba(0,0,0,.08);
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#0d6efd;
+
+    color:white;
+
+}
+
+th{
+
+    padding:16px;
+
+    text-align:left;
+
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #efefef;
+
+    vertical-align:middle;
+
+}
+
+tbody tr:hover{
+
+    background:#f8f9fa;
+
+}
+
+/* ---------------- Banner ---------------- */
+
+.banner{
+
+    width:90px;
+
+    height:60px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    border:1px solid #ddd;
+
+}
+
+/* ---------------- Estado ---------------- */
+
+.status{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.published{
+
+    background:#198754;
+
+}
+
+.draft{
+
+    background:#ffc107;
+
+    color:#333;
+
+}
+
+/* ---------------- Acciones ---------------- */
+
+.actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.edit{
+
+    background:#198754;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+.edit:hover{
+
+    background:#157347;
+
+}
+
+.delete{
+
+    background:#dc3545;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+.delete:hover{
+
+    background:#bb2d3b;
+
+}
+
+/* ---------------- Loading ---------------- */
+
+.loading{
+
+    background:white;
+
+    border-radius:10px;
+
+    padding:40px;
+
+    text-align:center;
+
+    color:#777;
+
+    box-shadow:0 6px 25px rgba(0,0,0,.08);
+
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media(max-width:768px){
+
+    .toolbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .toolbar input{
+
+        max-width:none;
+
+    }
+
+    table{
+
+        min-width:900px;
+
+    }
+
+}

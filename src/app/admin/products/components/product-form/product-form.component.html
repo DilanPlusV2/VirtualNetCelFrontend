@@ -1,0 +1,151 @@
+<div class="modal">
+
+    <div class="card">
+
+        <h2>
+
+            {{product ? 'Editar Producto' : 'Nuevo Producto'}}
+
+        </h2>
+
+        <label>
+
+            Nombre
+
+        </label>
+
+        <input
+
+            [(ngModel)]="form.nombre">
+
+        <label>
+
+            Descripción
+
+        </label>
+
+        <textarea
+
+            [(ngModel)]="form.descripcion">
+
+        </textarea>
+
+        <label>
+
+            Precio compra
+
+        </label>
+
+        <input
+
+            type="number"
+
+            [(ngModel)]="form.precio_compra">
+
+        <label>
+
+            Precio venta
+
+        </label>
+
+        <input
+
+            type="number"
+
+            [(ngModel)]="form.precio_venta">
+
+        <label>
+
+            Categoría
+
+        </label>
+
+        <select
+
+            [(ngModel)]="form.categoria_id">
+
+            <option [value]="0">
+
+                Seleccione...
+
+            </option>
+
+            <option
+
+                *ngFor="let c of categories"
+
+                [value]="c.id">
+
+                {{c.nombre}}
+
+            </option>
+
+        </select>
+
+        <label>
+
+            <input
+
+                type="checkbox"
+
+                [(ngModel)]="form.activo">
+
+            Producto activo
+
+        </label>
+
+        <app-product-images
+
+    *ngIf="form.id"
+
+    [productId]="form.id!">
+
+</app-product-images>
+
+<app-product-manual
+
+    *ngIf="form.id"
+
+    [productId]="form.id!"
+
+    [manual]="form.manual_usuario"
+
+    (uploaded)="form.manual_usuario = $event">
+
+</app-product-manual>
+
+<app-product-datasheet
+
+    *ngIf="form.id"
+
+    [productId]="form.id!"
+
+    [datasheet]="form.ficha_tecnica"
+
+    (uploaded)="form.ficha_tecnica = $event">
+
+</app-product-datasheet>
+
+        <div class="buttons">
+
+            <button
+
+                (click)="cancel()">
+
+                Cancelar
+
+            </button>
+
+            <button
+
+                (click)="save()">
+
+                Guardar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

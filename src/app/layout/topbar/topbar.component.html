@@ -1,0 +1,167 @@
+<div class="topbar">
+
+    <div class="left">
+
+        <span>
+
+    <img
+        src="/phone.png"
+        class="icon"
+        alt="Teléfono">
+
+    (+57) 301 363 5349
+
+</span>
+
+<span>
+
+    <img
+        src="/location.png"
+        class="icon"
+        alt="Ubicación">
+
+    Sincelejo - Sucre
+
+</span>
+
+<span>
+
+    <img
+        src="/mail.png"
+        class="icon"
+        alt="Correo">
+
+    contacto@virtualnet.com.co
+
+</span>
+
+    </div>
+
+    <div class="right">
+
+        <a
+        href="https://www.facebook.com/VirtualNet"
+        target="_blank"
+        class="social">
+
+        <img
+            src="/facebook.png"
+            alt="Facebook">
+
+    </a>
+
+    <a
+        href="https://www.instagram.com/virtualnet"
+        target="_blank"
+        class="social">
+
+        <img
+            src="/instagram.png"
+            alt="Instagram">
+
+    </a>
+
+    <a
+        href="https://wa.me/573001410893"
+        target="_blank"
+        class="social">
+
+        <img
+            src="/whatsapp.png"
+            alt="WhatsApp">
+
+    </a>
+
+        <div class="account">
+
+            <span class="account-button">
+
+    <img
+        src="/user.png"
+        class="account-icon"
+        alt="Mi cuenta">
+
+    <span>
+
+        Mi cuenta
+
+    </span>
+
+</span>
+
+            <div class="login-dropdown">
+
+    <ng-container *ngIf="!user; else loggedUser">
+
+        <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="Correo">
+
+        <input
+        type="password"
+        [(ngModel)]="password"
+        placeholder="Contraseña">
+
+        <label class="remember">
+
+            <input type="checkbox">
+
+            Recordarme
+
+        </label>
+
+        <button
+        (click)="login()">
+
+            {{loading?'Ingresando...':'Iniciar sesión'}}
+
+        </button>
+
+        <p
+        *ngIf="error"
+        style="color:red">
+
+            {{error}}
+
+        </p>
+
+    </ng-container>
+
+    <ng-template #loggedUser>
+
+        <strong>
+
+            {{user.nombre}}
+
+        </strong>
+
+        <small>
+
+            {{user.email}}
+
+        </small>
+
+        <button
+        (click)="router.navigate(['/admin'])">
+
+            Panel administrativo
+
+        </button>
+
+        <button
+        (click)="logout()">
+
+            Cerrar sesión
+
+        </button>
+
+    </ng-template>
+
+</div>
+
+        </div>
+
+    </div>
+
+</div>

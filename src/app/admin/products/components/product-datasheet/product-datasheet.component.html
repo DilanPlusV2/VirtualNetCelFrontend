@@ -1,0 +1,23 @@
+<h3>Ficha técnica</h3>
+
+<div *ngIf="datasheet">
+
+    <a
+
+        [href]="'http://localhost:3000'+datasheet"
+
+        target="_blank">
+
+        Ver ficha técnica
+
+    </a>
+
+</div>
+
+<input
+
+type="file"
+
+accept=".pdf"
+
+(change)="select($event)">

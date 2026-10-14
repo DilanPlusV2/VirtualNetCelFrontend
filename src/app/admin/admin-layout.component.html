@@ -1,0 +1,27 @@
+<div class="admin-container">
+
+    <app-sidebar
+    [open]="sidebarOpen">
+</app-sidebar>
+
+    <div
+        class="overlay"
+        *ngIf="sidebarOpen"
+        (click)="sidebarOpen=false">
+    </div>
+
+    <div class="admin-content">
+
+        <app-header
+            (menu)="sidebarOpen=!sidebarOpen">
+        </app-header>
+
+        <main>
+
+            <router-outlet></router-outlet>
+
+        </main>
+
+    </div>
+
+</div>

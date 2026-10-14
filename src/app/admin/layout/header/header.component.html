@@ -1,0 +1,80 @@
+<header>
+
+    <div class="left">
+
+        <button
+            class="menu-btn"
+            (click)="menu.emit()">
+
+            <img
+                src="/menu.png"
+                alt="Menú">
+
+        </button>
+
+        <div class="title">
+
+            <h2>
+
+                Panel Administrativo
+
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div class="account">
+
+        <span class="account-button">
+
+            <img
+                src="/user.png"
+                class="user-icon"
+                alt="Usuario">
+
+            {{user?.nombre}}
+
+        </span>
+
+        <div class="dropdown">
+
+            <h3>
+
+                {{user?.nombre}}
+
+            </h3>
+
+            <p>
+
+                {{user?.email}}
+
+            </p>
+
+            <hr>
+
+            <button>
+
+                Mi perfil
+
+            </button>
+
+            <button>
+
+                Configuración
+
+            </button>
+
+            <button
+                class="logout"
+                (click)="logout()">
+
+                Cerrar sesión
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>

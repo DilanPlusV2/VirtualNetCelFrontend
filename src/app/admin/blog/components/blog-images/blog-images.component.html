@@ -1,0 +1,229 @@
+<div
+    class="modal"
+    *ngIf="show">
+
+    <div class="card">
+
+        <div class="header">
+
+            <h2>
+
+                Imágenes del artículo
+
+            </h2>
+
+            <button
+                class="new"
+                (click)="newImage()">
+
+                + Nueva imagen
+
+            </button>
+
+        </div>
+
+        <div class="form">
+
+            <label>
+
+                Título
+
+            </label>
+
+            <input
+                type="text"
+                [(ngModel)]="form.titulo_imagen">
+
+            <label>
+
+                Descripción
+
+            </label>
+
+            <textarea
+                rows="3"
+                [(ngModel)]="form.descripcion">
+
+            </textarea>
+
+            <label>
+
+                Orden
+
+            </label>
+
+            <input
+                type="number"
+                min="1"
+                [(ngModel)]="form.orden">
+
+            <label>
+
+                Imagen
+
+            </label>
+
+            <input
+                type="file"
+                accept="image/*"
+                (change)="selectImage($event)">
+
+            <div
+                class="preview"
+                *ngIf="preview">
+
+                <img
+                    [src]="preview">
+
+            </div>
+
+            <div class="buttons">
+
+                <button
+                    class="save"
+                    [disabled]="saving"
+                    (click)="save()">
+
+                    {{saving ? 'Guardando...' : (editing ? 'Actualizar' : 'Guardar')}}
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div
+            class="loading"
+            *ngIf="loading">
+
+            Cargando imágenes...
+
+        </div>
+
+        <table
+            *ngIf="!loading">
+
+            <thead>
+
+                <tr>
+
+                    <th width="110">
+
+                        Imagen
+
+                    </th>
+
+                    <th>
+
+                        Información
+
+                    </th>
+
+                    <th width="80">
+
+                        Orden
+
+                    </th>
+
+                    <th width="180">
+
+                        Acciones
+
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    *ngFor="let image of images">
+
+                    <td>
+
+                        <img
+
+                            class="thumb"
+
+                            [src]="'http://localhost:3000'+image.ruta_archivo">
+
+                    </td>
+
+                    <td>
+
+                        <strong>
+
+                            {{image.titulo_imagen}}
+
+                        </strong>
+
+                        <br>
+
+                        <small>
+
+                            {{image.descripcion}}
+
+                        </small>
+
+                    </td>
+
+                    <td>
+
+                        {{image.orden}}
+
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+
+                                class="edit"
+
+                                (click)="edit(image)">
+
+                                Editar
+
+                            </button>
+
+                            <button
+
+                                class="delete"
+
+                                (click)="remove(image)">
+
+                                Eliminar
+
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="footer">
+
+            <button
+
+                class="cancel"
+
+                (click)="closeModal()">
+
+                Cerrar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

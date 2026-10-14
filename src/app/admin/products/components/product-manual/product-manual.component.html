@@ -1,0 +1,21 @@
+<h3>Manual de usuario</h3>
+
+<div *ngIf="manual">
+
+    <a
+        [href]="'http://localhost:3000'+manual"
+        target="_blank">
+
+        Ver manual
+
+    </a>
+
+</div>
+
+<input
+
+type="file"
+
+accept=".pdf"
+
+(change)="select($event)">

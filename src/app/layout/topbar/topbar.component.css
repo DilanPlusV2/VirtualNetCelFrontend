@@ -1,0 +1,410 @@
+.topbar{
+
+background:#111;
+
+color:white;
+
+height:40px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:0 30px;
+
+font-size:14px;
+
+position:relative;
+
+z-index:3000;
+
+}
+
+/*--------------------------*/
+/* IZQUIERDA */
+/*--------------------------*/
+
+.left{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+.left span{
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+white-space:nowrap;
+
+}
+
+/*--------------------------*/
+/* DERECHA */
+/*--------------------------*/
+
+.right{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+.right>a{
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+.right>a:hover{
+
+    color:#0d6efd;
+
+}
+
+/*--------------------------*/
+/* LOGIN */
+/*--------------------------*/
+
+.account{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    height:40px;
+
+}
+
+.account-button{
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+/*--------------------------*/
+/* DROPDOWN */
+/*--------------------------*/
+
+.login-dropdown{
+
+    position:absolute;
+
+    right:0;
+
+    top:calc(100% + 8px);
+
+    width:300px;
+
+    background:white;
+
+    color:#333;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.18);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(10px);
+
+    transition:.25s;
+
+    z-index:5000;
+
+}
+
+/* IMPORTANTE */
+
+.account:hover .login-dropdown{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+/*--------------------------*/
+/* INPUTS */
+/*--------------------------*/
+
+.login-dropdown input[type=email],
+.login-dropdown input[type=password]{
+
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #ddd;
+
+    border-radius:6px;
+
+    outline:none;
+
+    box-sizing:border-box;
+
+}
+
+.login-dropdown input:focus{
+
+    border-color:#0d6efd;
+
+}
+
+/*--------------------------*/
+/* RECORDARME */
+/*--------------------------*/
+
+.remember{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:13px;
+
+}
+
+/*--------------------------*/
+/* BOTON */
+/*--------------------------*/
+
+.login-dropdown button{
+
+    width:100%;
+
+    border:none;
+
+    background:#0d6efd;
+
+    color:white;
+
+    padding:11px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.login-dropdown button:hover{
+
+    background:#0b5ed7;
+
+}
+
+/*--------------------------*/
+/* LINK */
+/*--------------------------*/
+
+.login-dropdown a{
+
+    text-align:center;
+
+    color:#0d6efd;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+}
+
+.login-dropdown a:hover{
+
+    text-decoration:underline;
+
+}
+
+/*--------------------------*/
+/* OCULTAR TOPBAR */
+/*--------------------------*/
+
+.topbar.hide{
+
+    transform:translateY(-100%);
+
+    opacity:0;
+
+}
+
+.social{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:24px;
+
+height:24px;
+
+transition:.25s;
+
+}
+
+.social img{
+
+width:16px;
+
+height:16px;
+
+object-fit:contain;
+
+transition:.25s;
+
+}
+
+.social:hover img{
+
+transform:scale(1.15);
+
+}
+
+.social:hover img{
+
+transform:scale(1.15);
+
+}
+
+@media(max-width:700px){
+
+.topbar{
+
+height:auto;
+
+padding:8px 12px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.left{
+
+width:100%;
+
+justify-content:center;
+
+margin-bottom:6px;
+
+font-size:12px;
+
+}
+
+.right{
+
+width:100%;
+
+justify-content:center;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.left span:nth-child(2),
+
+.left span:nth-child(3){
+
+display:none;
+
+}
+
+.social img{
+
+width:18px;
+
+height:18px;
+
+}
+
+}
+
+.icon{
+
+width:16px;
+
+height:16px;
+
+object-fit:contain;
+
+flex-shrink:0;
+
+}
+
+.account-button{
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+cursor:pointer;
+
+user-select:none;
+
+color:white;
+
+font-weight:500;
+
+}
+
+.account-icon{
+
+width:20px;
+
+height:20px;
+
+object-fit:contain;
+
+flex-shrink:0;
+
+transition:.25s;
+
+}
+
+.account-button:hover .account-icon{
+
+transform:scale(1.1);
+
+}

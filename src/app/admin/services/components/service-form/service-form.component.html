@@ -1,0 +1,278 @@
+<div class="container">
+
+    <div class="header">
+
+        <h2>
+
+            Administración de Servicios
+
+        </h2>
+
+        <button
+            class="new"
+            (click)="newService()">
+
+            + Nuevo servicio
+
+        </button>
+
+    </div>
+
+    <div class="form">
+
+        <label>
+
+            Nombre
+
+        </label>
+
+        <input
+            type="text"
+            [(ngModel)]="form.nombre">
+
+        <label>
+
+            Descripción
+
+        </label>
+
+        <textarea
+            rows="5"
+            [(ngModel)]="form.descripcion">
+
+        </textarea>
+
+        <div class="grid">
+
+            <div>
+
+                <label>
+
+                    Precio base
+
+                </label>
+
+                <input
+                    type="number"
+                    min="0"
+                    [(ngModel)]="form.precio_base">
+
+            </div>
+
+            <div class="checkbox">
+
+                <input
+                    type="checkbox"
+                    [(ngModel)]="form.es_mantenimiento">
+
+                <span>
+
+                    Es mantenimiento
+
+                </span>
+
+            </div>
+
+            <div class="checkbox">
+
+                <input
+                    type="checkbox"
+                    [(ngModel)]="form.activo">
+
+                <span>
+
+                    Activo
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="buttons">
+
+            <button
+
+                class="save"
+
+                (click)="save()">
+
+                {{editing ? 'Actualizar' : 'Guardar'}}
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+
+                    Nombre
+
+                </th>
+
+                <th>
+
+                    Tipo
+
+                </th>
+
+                <th>
+
+                    Precio
+
+                </th>
+
+                <th>
+
+                    Estado
+
+                </th>
+
+                <th width="350">
+
+                    Acciones
+
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr
+                *ngFor="let service of services">
+
+                <td>
+
+                    <strong>
+
+                        {{service.nombre}}
+
+                    </strong>
+
+                    <br>
+
+                    <small>
+
+                        {{service.descripcion}}
+
+                    </small>
+
+                </td>
+
+                <td>
+
+                    <span
+                        class="badge"
+
+                        [class.maintenance]="service.es_mantenimiento">
+
+                        {{service.es_mantenimiento ? 'Mantenimiento' : 'Instalación'}}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    {{service.precio_base | currency:'COP':'symbol':'1.0-0'}}
+
+                </td>
+
+                <td>
+
+                    <span
+
+                        class="status"
+
+                        [class.active]="service.activo">
+
+                        {{service.activo ? 'Activo' : 'Inactivo'}}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <div class="actions">
+
+                        <button
+
+                            class="edit"
+
+                            (click)="edit(service)">
+
+                            Editar
+
+                        </button>
+
+                        <button
+
+                            class="images"
+
+                            (click)="openImages(service)">
+
+                            Imágenes
+
+                        </button>
+
+                        <button
+
+                            class="completed"
+
+                            (click)="openCompleted(service)">
+
+                            Servicios realizados
+
+                        </button>
+
+                        <button
+
+                            class="delete"
+
+                            (click)="remove(service)">
+
+                            Eliminar
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<app-service-images
+
+    [show]="showImages"
+
+    [serviceId]="selectedService"
+
+    (close)="showImages=false">
+
+</app-service-images>
+
+<app-completed-services
+
+    [show]="showCompleted"
+
+    [serviceId]="selectedService"
+
+    (close)="showCompleted=false">
+
+</app-completed-services>

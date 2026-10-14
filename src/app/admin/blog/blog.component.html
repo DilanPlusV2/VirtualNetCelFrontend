@@ -1,0 +1,177 @@
+<div class="page">
+
+    <h1>Blog</h1>
+
+    <div class="toolbar">
+
+        <input
+            type="text"
+            [(ngModel)]="search"
+            (input)="filter()"
+            placeholder="Buscar publicación...">
+
+        <button
+            (click)="newBlog()">
+
+            + Nueva publicación
+
+        </button>
+
+    </div>
+
+    <div
+        class="loading"
+        *ngIf="loading">
+
+        Cargando publicaciones...
+
+    </div>
+
+    <div
+        class="table-container"
+        *ngIf="!loading">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th width="120">
+
+                        Banner
+
+                    </th>
+
+                    <th>
+
+                        Título
+
+                    </th>
+
+                    <th width="180">
+
+                        Autor
+
+                    </th>
+
+                    <th width="140">
+
+                        Estado
+
+                    </th>
+
+                    <th width="220">
+
+                        Acciones
+
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    *ngFor="let blog of filteredBlogs">
+
+                    <td>
+
+                        <img
+    *ngIf="blog.imagen_portada"
+    [src]="'http://localhost:3000' + blog.imagen_portada"
+    class="banner">
+
+<span
+    *ngIf="!blog.imagen_portada">
+
+    Sin banner
+
+</span>
+
+                    </td>
+
+                    <td>
+
+                        <strong>
+
+                            {{blog.titulo}}
+
+                        </strong>
+
+                        <br>
+
+                        <small>
+
+                            {{blog.resumen}}
+
+                        </small>
+
+                    </td>
+
+                    <td>
+
+                        {{blog.autor}}
+
+                    </td>
+
+                    <td>
+
+                        <span
+
+                            class="status"
+
+                            [ngClass]="blog.publicado ? 'published' : 'draft'">
+
+                            {{blog.publicado ? 'Publicado' : 'Borrador'}}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+
+                                class="edit"
+
+                                (click)="edit(blog)">
+
+                                Editar
+
+                            </button>
+
+                            <button
+
+                                class="delete"
+
+                                (click)="delete(blog)">
+
+                                Eliminar
+
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<app-blog-form
+    *ngIf="showForm"
+    [show]="showForm"
+    [blog]="selectedBlog"
+    (saved)="reload()"
+    (close)="showForm=false">
+</app-blog-form>

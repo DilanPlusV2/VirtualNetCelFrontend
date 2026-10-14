@@ -1,0 +1,103 @@
+<div
+    class="modal"
+    *ngIf="show">
+
+    <div class="card">
+
+        <div class="header">
+
+            <h2>
+
+                Referencias bibliográficas
+
+            </h2>
+
+            <button
+                (click)="newReference()">
+
+                + Nueva
+
+            </button>
+
+        </div>
+
+        <input
+            placeholder="Título"
+            [(ngModel)]="form.titulo">
+
+        <input
+            placeholder="Autores"
+            [(ngModel)]="form.autores">
+
+        <input
+            placeholder="URL"
+            [(ngModel)]="form.url">
+
+        <input
+            type="number"
+            placeholder="Año"
+            [(ngModel)]="form.anio">
+
+        <button
+            class="save"
+            (click)="save()">
+
+            {{editing?'Actualizar':'Guardar'}}
+
+        </button>
+
+        <table>
+
+            <tr
+                *ngFor="let r of references">
+
+                <td>
+
+                    <strong>
+
+                        {{r.titulo}}
+
+                    </strong>
+
+                    <br>
+
+                    {{r.autores}}
+
+                    <br>
+
+                    {{r.anio}}
+
+                </td>
+
+                <td>
+
+                    <button
+                        (click)="edit(r)">
+
+                        Cambiar
+
+                    </button>
+
+                    <button
+                        (click)="remove(r)">
+
+                        Eliminar
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <button
+            (click)="closeModal()">
+
+            Cerrar
+
+        </button>
+
+    </div>
+
+</div>

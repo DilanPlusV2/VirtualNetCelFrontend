@@ -1,0 +1,315 @@
+<div
+class="dashboard"
+*ngIf="stats">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Dashboard</h1>
+
+            <p>
+
+                Bienvenido nuevamente Administrador
+
+            </p>
+
+        </div>
+
+        <div class="date">
+
+            06 Julio 2026
+
+        </div>
+
+    </div>
+
+    <!-- TARJETAS -->
+
+    <div class="cards">
+
+    <div class="card">
+
+        <img src="/products.png" class="card-icon">
+
+        <h2>{{stats.cards.productos}}</h2>
+
+        <p>Productos</p>
+
+    </div>
+
+    <div class="card">
+
+        <img src="/categories.png" class="card-icon">
+
+        <h2>{{stats.cards.categorias}}</h2>
+
+        <p>Categorías</p>
+
+    </div>
+
+    <div class="card">
+
+        <img src="/services.png" class="card-icon">
+
+        <h2>{{stats.cards.servicios}}</h2>
+
+        <p>Servicios</p>
+
+    </div>
+
+    <div class="card">
+
+        <img src="/blog.png" class="card-icon">
+
+        <h2>{{stats.cards.blogs}}</h2>
+
+        <p>Blogs</p>
+
+    </div>
+
+    <div class="card warning">
+
+        <img src="/inventory.png" class="card-icon">
+
+        <h2>{{stats.cards.inventario}}</h2>
+
+        <p>Inventario Bajo</p>
+
+    </div>
+
+    <div class="card">
+
+        <img src="/installation.png" class="card-icon">
+
+        <h2>{{stats.cards.instalaciones}}</h2>
+
+        <p>Instalaciones</p>
+
+    </div>
+
+    <div class="card">
+
+        <img src="/maintenance.png" class="card-icon">
+
+        <h2>{{stats.cards.mantenimientos}}</h2>
+
+        <p>Mantenimientos</p>
+
+    </div>
+
+    <div class="card">
+
+        <img src="/testimonial.png" class="card-icon">
+
+        <h2>{{stats.cards.testimonios}}</h2>
+
+        <p>Testimonios</p>
+
+    </div>
+
+</div>
+
+    <!-- GRAFICOS -->
+
+    <div class="charts">
+
+        <div class="chart">
+
+            <h3>
+
+                Servicios por tipo
+
+            </h3>
+
+            <div class="placeholder">
+
+                Doughnut Chart
+
+            </div>
+
+        </div>
+
+        <div class="chart">
+
+            <h3>
+
+                Productos por categoría
+
+            </h3>
+
+            <div class="placeholder">
+
+                Bar Chart
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TABLAS -->
+
+    <div class="tables">
+
+        <div class="table-card">
+
+            <div class="table-title">
+
+                Últimos servicios realizados
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Cliente</th>
+
+                        <th>Servicio</th>
+
+                        <th>Técnico</th>
+
+                        <th>Fecha</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+    <tr
+
+        *ngFor="let servicio of stats.ultimosServicios">
+
+        <td>
+
+            {{servicio.cliente}}
+
+        </td>
+
+        <td>
+
+            {{servicio.servicio.nombre}}
+
+        </td>
+
+        <td>
+
+            {{servicio.tecnico || 'Sin asignar'}}
+
+        </td>
+
+        <td>
+
+            {{servicio.fecha | date:'dd/MM/yyyy'}}
+
+        </td>
+
+    </tr>
+
+</tbody>
+
+            </table>
+
+        </div>
+
+        <div class="table-card">
+
+            <div class="table-title">
+
+                Últimos blogs publicados
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Título</th>
+
+                        <th>Fecha</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+    <tr
+
+        *ngFor="let blog of stats.ultimosBlogs">
+
+        <td>
+
+            {{blog.titulo}}
+
+        </td>
+
+        <td>
+
+            {{blog.fecha_publicacion | date:'dd/MM/yyyy'}}
+
+        </td>
+
+    </tr>
+
+</tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- ACCIONES -->
+
+    <div class="quick-actions">
+
+    <button (click)="goProducts()">
+
+        <img src="products.png" class="btn-icon">
+
+        Nuevo Producto
+
+    </button>
+
+    <button (click)="goCategories()">
+
+        <img src="/categories.png" class="btn-icon">
+
+        Nueva Categoría
+
+    </button>
+
+    <button (click)="goServices()">
+
+        <img src="/services.png" class="btn-icon">
+
+        Nuevo Servicio
+
+    </button>
+
+    <button (click)="goBlogs()">
+
+        <img src="/blog.png" class="btn-icon">
+
+        Nuevo Blog
+
+    </button>
+
+    <button (click)="goInventory()">
+
+        <img src="/inventory.png" class="btn-icon">
+
+        Inventario
+
+    </button>
+
+</div>
+
+</div>

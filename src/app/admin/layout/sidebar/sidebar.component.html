@@ -1,0 +1,131 @@
+<div
+    class="sidebar"
+    [class.open]="open">
+
+    <div>
+
+        <div class="logo">
+
+            <img
+                src="/logo.jpg"
+                alt="VirtualNet">
+
+        </div>
+
+        <nav>
+
+            <a
+                routerLink="/admin/dashboard"
+                routerLinkActive="active">
+
+                <img
+                    src="/dashboard.png"
+                    class="icon">
+
+                <span>
+
+                    Dashboard
+
+                </span>
+
+            </a>
+
+            <a
+                routerLink="/admin/products"
+                routerLinkActive="active">
+
+                <img
+                    src="/products.png"
+                    class="icon">
+
+                <span>
+
+                    Productos
+
+                </span>
+
+            </a>
+
+            <a
+                routerLink="/admin/categories"
+                routerLinkActive="active">
+
+                <img
+                    src="/categories.png"
+                    class="icon">
+
+                <span>
+
+                    Categorías
+
+                </span>
+
+            </a>
+
+            <a
+                routerLink="/admin/inventory"
+                routerLinkActive="active">
+
+                <img
+                    src="/inventory.png"
+                    class="icon">
+
+                <span>
+
+                    Inventario
+
+                </span>
+
+            </a>
+
+            <a
+                routerLink="/admin/blog"
+                routerLinkActive="active">
+
+                <img
+                    src="/blog.png"
+                    class="icon">
+
+                <span>
+
+                    Blog
+
+                </span>
+
+            </a>
+
+            <a
+                routerLink="/admin/services"
+                routerLinkActive="active">
+
+                <img
+                    src="/services.png"
+                    class="icon">
+
+                <span>
+
+                    Servicios
+
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+    <button (click)="logout()">
+
+        <img
+            src="/logout.png"
+            class="icon">
+
+        <span>
+
+            Cerrar sesión
+
+        </span>
+
+    </button>
+
+</div>

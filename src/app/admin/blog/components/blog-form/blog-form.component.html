@@ -1,0 +1,282 @@
+<div
+    class="modal"
+    *ngIf="show">
+
+    <div class="card">
+
+        <h2>
+
+            {{ editing ? 'Editar publicación' : 'Nueva publicación' }}
+
+        </h2>
+
+        <label>
+
+            Título
+
+        </label>
+
+        <input
+            type="text"
+            [(ngModel)]="form.titulo">
+
+        <label>
+
+            Slug
+
+        </label>
+
+        <input
+            type="text"
+            [(ngModel)]="form.slug">
+
+        <label>
+
+            Resumen
+
+        </label>
+
+        <textarea
+            rows="3"
+            [(ngModel)]="form.resumen">
+
+        </textarea>
+
+        <label>
+
+            Contenido
+
+        </label>
+
+        <textarea
+            rows="10"
+            [(ngModel)]="form.contenido">
+
+        </textarea>
+
+        <label>
+
+            Autor
+
+        </label>
+
+        <input
+            type="text"
+            [(ngModel)]="form.autor">
+
+            <label>
+
+    Banner principal
+
+</label>
+
+<div class="banner-upload">
+
+    <input
+        #bannerInput
+        type="file"
+        accept="image/*"
+        hidden
+        (change)="selectBanner($event)">
+
+    <div
+        class="banner-preview"
+        (click)="bannerInput.click()">
+
+        <ng-container *ngIf="preview; else emptyBanner">
+
+            <img
+                [src]="preview"
+                alt="Banner">
+
+        </ng-container>
+
+        <ng-template #emptyBanner>
+
+            <div class="empty">
+
+                <span class="icon">
+
+                    🖼️
+
+                </span>
+
+                <p>
+
+                    Haz clic para seleccionar un banner
+
+                </p>
+
+                <small>
+
+                    JPG · PNG · WEBP
+
+                </small>
+
+            </div>
+
+        </ng-template>
+
+    </div>
+
+    <button
+        type="button"
+        class="change-banner"
+        (click)="bannerInput.click()">
+
+        Cambiar imagen
+
+    </button>
+
+</div>
+
+        <!-- ===================================== -->
+<!-- Imágenes internas -->
+<!-- ===================================== -->
+
+<div
+    class="image-manager"
+    *ngIf="editing">
+
+    <div class="image-info">
+
+        <div>
+
+            <h3>
+
+                Imágenes del artículo
+
+            </h3>
+
+            <p>
+
+                Agrega fotografías, diagramas o ilustraciones que aparecerán dentro del contenido del blog.
+
+            </p>
+
+        </div>
+
+        <button
+
+            class="images-button"
+
+            type="button"
+
+            (click)="manageImages()">
+
+            📷 Administrar imágenes
+
+        </button>
+
+    </div>
+
+</div>
+
+<div
+    class="image-manager"
+    *ngIf="editing">
+
+    <div class="image-info">
+
+        <div>
+
+            <h3>
+
+                Referencias bibliográficas
+
+            </h3>
+
+            <p>
+
+                Administra las fuentes y bibliografía del artículo.
+
+            </p>
+
+        </div>
+
+        <button
+
+            class="images-button"
+
+            type="button"
+
+            (click)="manageReferences()">
+
+            📚 Administrar referencias
+
+        </button>
+
+    </div>
+
+</div>
+
+        <label class="check">
+
+            <input
+                type="checkbox"
+                [(ngModel)]="form.publicado">
+
+            Publicar inmediatamente
+
+        </label>
+
+        <div class="buttons">
+
+            <button
+                class="cancel"
+                type="button"
+                (click)="closeModal()">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="save"
+                type="button"
+                [disabled]="saving"
+                (click)="save()">
+
+                {{
+uploadingBanner
+?
+'Subiendo banner...'
+:
+saving
+?
+'Guardando...'
+:
+'Guardar'
+}}
+
+            </button>
+
+        </div>
+
+
+        <app-blog-images
+
+    *ngIf="showImages"
+
+    [show]="showImages"
+
+    [blogId]="blog!.id!"
+
+    (close)="showImages=false">
+
+</app-blog-images>
+<app-blog-references
+
+    *ngIf="showReferences"
+
+    [show]="showReferences"
+
+    [blogId]="blog!.id!"
+
+    (close)="showReferences=false">
+
+</app-blog-references>
+
+    </div>
+
+</div>

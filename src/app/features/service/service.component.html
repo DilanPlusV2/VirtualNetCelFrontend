@@ -1,0 +1,166 @@
+<section class="services">
+
+    <div class="container">
+
+        <h2>
+
+            Nuestros Servicios
+
+        </h2>
+
+        <p>
+
+            Instalación, mantenimiento y automatización.
+
+        </p>
+
+        <div class="services-grid">
+
+            <div
+                class="service-card"
+                *ngFor="let service of services">
+
+                <img
+                    [src]="image(service)"
+                    [alt]="service.nombre">
+
+                <div class="content">
+
+                    <span class="badge">
+
+                        {{service.tipo}}
+
+                    </span>
+
+                    <h3>
+
+                        {{service.nombre}}
+
+                    </h3>
+
+                    <p>
+
+                        {{service.descripcion}}
+
+                    </p>
+
+                    <div class="price">
+
+                        {{service.precio_base | currency:'COP':'symbol':'1.0-0'}}
+
+                    </div>
+
+                    <button (click)="verServicio(service)">
+
+                        Ver más
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div
+class="modal-backdrop"
+*ngIf="serviceSelected">
+
+<div class="service-modal">
+
+<button
+class="close"
+(click)="cerrarServicio()">
+
+✕
+
+</button>
+
+<div class="modal-body">
+
+<div class="gallery">
+
+<img
+class="main-image"
+[src]="mainImage">
+
+<div
+class="thumbnails"
+*ngIf="serviceSelected.imagenes?.length">
+
+<img
+
+*ngFor="let img of serviceSelected.imagenes"
+
+[src]="server + img.ruta_imagen"
+
+(click)="cambiarImagen(server + img.ruta_imagen)"
+
+[class.active]="mainImage===server + img.ruta_imagen">
+
+</div>
+
+</div>
+
+<div class="info">
+
+<span class="category">
+
+{{serviceSelected.tipo}}
+
+</span>
+
+<h2>
+
+{{serviceSelected.nombre}}
+
+</h2>
+
+<div class="modal-price">
+
+{{serviceSelected.precio_base
+| currency:'COP':'symbol':'1.0-0'}}
+
+</div>
+
+<p class="description">
+
+{{serviceSelected.descripcion}}
+
+</p>
+
+<div class="actions">
+
+<button
+class="whatsapp"
+(click)="pedirWhatsapp()">
+
+<img
+    src="/whatsapp.png"
+    class="whatsapp-icon"
+    alt="WhatsApp">
+
+Solicitar por WhatsApp
+
+</button>
+
+<button
+(click)="cerrarServicio()">
+
+Cerrar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

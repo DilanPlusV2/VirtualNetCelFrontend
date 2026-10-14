@@ -1,0 +1,75 @@
+<section class="blogs-section">
+
+    <div class="header">
+
+        <h1>
+
+            Nuestro Blog
+
+        </h1>
+
+        <p>
+
+            Noticias, consejos, guías y novedades sobre automatización, seguridad electrónica y tecnología.
+
+        </p>
+
+    </div>
+
+    <div class="blogs">
+
+        <article
+            class="blog"
+            *ngFor="let blog of blogs">
+
+            <div
+                class="image-container"
+                (click)="abrirBlog(blog)">
+
+                <img
+                    [src]="image(blog)"
+                    [alt]="blog.titulo">
+
+                <div class="likes">
+
+    <img
+        src="/heart.png"
+        class="like-icon"
+        alt="Likes">
+
+    {{blog.likes || 0}}
+
+</div>
+
+            </div>
+
+            <div class="blog-content">
+
+                <h2
+                    (click)="abrirBlog(blog)">
+
+                    {{blog.titulo}}
+
+                </h2>
+
+                <p>
+
+                    {{blog.resumen}}
+
+                </p>
+
+                <button
+                    class="read-btn"
+                    (click)="abrirBlog(blog)">
+
+                    Leer artículo →
+
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
